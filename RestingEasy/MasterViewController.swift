@@ -69,13 +69,13 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
 
         //let object = objects[indexPath.row] as! NSDate
         //cell.textLabel!.text = object.description
         
         
-        var venue: Venue = self.venues[indexPath.row] as! Venue
+        let venue: Venue = self.venues[indexPath.row] as! Venue
         cell.textLabel?.text = venue.name
         cell.detailTextLabel?.text = String(stringInterpolationSegment: venue.location!.distance)
         
@@ -119,7 +119,7 @@ class MasterViewController: UITableViewController {
         
         venueMapping.addPropertyMapping(RKRelationshipMapping(fromKeyPath: "location", toKeyPath: "location", withMapping: locationMapping))
         
-        let responseDescriptor = RKResponseDescriptor(mapping: venueMappinga, method: RKRequestMethod.GET, pathPattern: "/v2/venues/search", keyPath: "response.venues", statusCodes: NSIndexSet(index: 200))
+        let responseDescriptor = RKResponseDescriptor(mapping: venueMapping, method: RKRequestMethod.GET, pathPattern: "/v2/venues/search", keyPath: "response.venues", statusCodes: NSIndexSet(index: 200))
         
         //let responseDescriptor = RKResponseDescriptor(mapping: classMapping, method: RKRequestMethod.GET, pathPattern: nil, keyPath: nil, statusCodes: NSIndexSet(index: 200))
         
